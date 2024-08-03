@@ -13,10 +13,9 @@ import { MdOutlineFeedback } from "react-icons/md";
 import { IoIosHelpCircleOutline } from "react-icons/io";
 import { formatDistanceToNowStrict, parseISO } from "date-fns";
 export const BASE_URL = "https://www.googleapis.com/youtube/v3";
-export const API_KEY = "AIzaSyBLnihrtbuenGE3GGwkXdlEyBlX7Mw2F7s";
+export const API_KEY = import.meta.env.VITE_API_KEY;
 
-export const YOUTUBE_VIDEO_API =
-  "https://youtube.googleapis.com/youtube/v3/videos?part=snippet%2CcontentDetails%2Cstatistics&chart=mostPopular&maxResults=48&regionCode=IN&key=AIzaSyBLnihrtbuenGE3GGwkXdlEyBlX7Mw2F7s";
+export const YOUTUBE_VIDEO_API = `https://youtube.googleapis.com/youtube/v3/videos?part=snippet%2CcontentDetails%2Cstatistics&chart=mostPopular&maxResults=48&regionCode=IN&key=${API_KEY}`;
 export const buttonList = [
   "All",
   "JavaScript",
