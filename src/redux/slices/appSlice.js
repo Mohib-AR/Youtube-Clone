@@ -4,6 +4,7 @@ export const appSlice = createSlice({
   initialState: {
     open: true,
     category: "All",
+    click: true,
   },
   reducers: {
     toggleSidebar: (state) => {
@@ -12,8 +13,11 @@ export const appSlice = createSlice({
     setCategory: (state, action) => {
       state.category = action.payload;
     },
+    setClick: (state) => {
+      state.click = !state.click;
+    },
   },
 });
 
-export const { toggleSidebar, setCategory } = appSlice.actions;
+export const { toggleSidebar, setCategory, setClick } = appSlice.actions;
 export default appSlice.reducer;

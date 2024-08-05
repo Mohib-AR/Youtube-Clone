@@ -7,7 +7,6 @@ import { Link } from "react-router-dom";
 import { useSelector } from "react-redux";
 
 export default function VideoContainer() {
-  console.log(API_KEY);
   const [videos, setVideos] = useState([]);
   const open = useSelector((store) => store.app.open);
   const category = useSelector((store) => store.app.category);

@@ -9,8 +9,8 @@ export default function Home() {
   return (
     <div className="flex  h-screen pt-[4.5rem]">
       <div
-        className={`hidden ${
-          open ? "md:z-50 md:inline-block" : null
+        className={`${
+          open ? "z-50 md:inline-block" : "hidden"
         } lg:inline-block ${
           open ? "lg:w-60" : "lg:w-20"
         }  transition-all duration-300`}
