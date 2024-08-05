@@ -6,19 +6,24 @@ import { AiOutlineLike, AiOutlineDislike } from "react-icons/ai";
 import { PiShareFatLight } from "react-icons/pi";
 import { GoDownload } from "react-icons/go";
 import { formatViewCount } from "./constant";
+import { setClick } from "../redux/slices/appSlice";
 import { formatPublishedDate } from "./constant";
+import { useDispatch } from "react-redux";
+
 export default function Search() {
   const [searchParams] = useSearchParams();
+
   const videoId = searchParams.get("v");
   const [iconsYt, setIcons] = useState([]);
   const [singleVideo, setSingleVideo] = useState(null);
   const [comments, setComments] = useState([]);
   const [subscribers, setSubscribers] = useState("");
+  const dispatch = useDispatch();
   const getSingleVideo = async () => {
     const res = await axios.get(
       `https://youtube.googleapis.com/youtube/v3/videos?part=snippet%2CcontentDetails%2Cstatistics&id=${videoId}&key=${API_KEY}`
     );
-
+    dispatch(setClick());
     setSingleVideo(res?.data?.items[0]);
   };
   const getYtIcons = async () => {
@@ -122,20 +127,18 @@ export default function Search() {
           {comments?.map((comment, index) => {
             const cmnt = comment.snippet.topLevelComment.snippet;
             return (
-              <>
-                <div
-                  key={index}
-                  className="flex  items-start space-x-4 mb-2 p-1 rounded-lg shadow-md"
-                >
+              <div key={index}>
+                <div className="flex  items-start space-x-4 mb-2 p-1 rounded-lg shadow-md">
                   <img
                     src={cmnt.authorProfileImageUrl}
                     className="w-9 h-9 rounded-full"
                   />
                   <div className="flex-1 text-white ">
                     <div className="flex items-center space-x-2">
-                      <span className="font-bold text-white">
-                        {cmnt.authorDisplayName}
-                      </span>
+                      {cmnt.authorDisplayName.length > 22
+                        ? `${cmnt.authorDisplayName.substring(0, 22)}...`
+                        : cmnt.authorDisplayName}
+                      &nbsp;&nbsp;
                       <div className="text-[#AAAAAA] text-sm">
                         {formatPublishedDate(cmnt.publishedAt)}
                       </div>
@@ -152,7 +155,7 @@ export default function Search() {
                     <AiOutlineDislike className="w-5 h-5" />
                   </button>
                 </div>
-              </>
+              </div>
             );
           })}
         </div>

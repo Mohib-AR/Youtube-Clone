@@ -5,7 +5,7 @@ import Feed from "./Feed";
 import { useSelector } from "react-redux";
 export default function Home() {
   const open = useSelector((store) => store.app.open);
-  console.log(open);
+
   return (
     <div className="flex  h-screen pt-[4.5rem]">
       <div

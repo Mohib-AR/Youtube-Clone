@@ -15,8 +15,12 @@ export default function Navbar() {
   const navigate = useNavigate();
   const click = useSelector((store) => store.app.click);
   const [value, setValue] = useState("");
-  console.log(click + " Clicked");
+
   const handleSearchClick = () => {
+    if (value == "") {
+      dispatch(setClick());
+      return;
+    }
     dispatch(setCategory(value));
     dispatch(setClick());
     setValue("");
