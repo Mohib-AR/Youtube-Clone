@@ -4,7 +4,7 @@ import { useSelector } from "react-redux";
 export default function Sidebar() {
   const open = useSelector((store) => store.app.open);
   const [active, setActive] = useState(0);
-  function handleClick() {}
+
   return (
     <>
       <div

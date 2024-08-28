@@ -15,7 +15,7 @@ export default function Navbar() {
   const navigate = useNavigate();
   const click = useSelector((store) => store.app.click);
   const [value, setValue] = useState("");
-
+  toggleSidebar;
   const handleSearchClick = () => {
     if (value == "") {
       dispatch(setClick());
@@ -76,7 +76,7 @@ export default function Navbar() {
                 }}
               />
             </div>
-            <div className="md:hidden">
+            <div className="md:hidden ">
               <IoSearchOutline
                 color="white"
                 className={`${
